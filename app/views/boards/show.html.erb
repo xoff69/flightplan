@@ -1,3 +1,9 @@
+BOARD <%= @board.name%> - 
+Proprio  <%= @board.user.email%>  - 
+Courant <%= current_user.email%><br/>
+<%= link_to "All boards", root_path %>
+<br/>
+
 <p style="color: green"><%= notice %></p>
 
 <%= render @board %>
