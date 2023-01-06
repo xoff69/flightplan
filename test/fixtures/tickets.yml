@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  label: MyString
+  description: MyString
+  color: MyString
+  archived: false
+  datearchived: 2023-01-06 13:44:51
+  duedate: 2023-01-06 13:44:51
+
+two:
+  label: MyString
+  description: MyString
+  color: MyString
+  archived: false
+  datearchived: 2023-01-06 13:44:51
+  duedate: 2023-01-06 13:44:51
