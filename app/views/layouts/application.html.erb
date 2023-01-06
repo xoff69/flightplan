@@ -30,7 +30,9 @@
   <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
 <% end %>
 </p>
-
+  <%= button_to "Sign out",  destroy_user_session_path, method: :delete %>
     <%= yield %>
+
+  
   </body>
 </html>
