@@ -1,11 +1,163 @@
+
+
+<p style="color: green"><%= notice %></p>
 BOARD <%= @board.name%> - 
 Proprio  <%= @board.user.email%>  - 
 Courant <%= current_user.email%><br/>
 <%= link_to "All boards", root_path %>
 <br/>
 
-<p style="color: green"><%= notice %></p>
+creation ticket:
+<%= link_to "Sign In", new_ticket_path, data: { turbo: true, turbo_frame: 'modal' } %>
 
+ <!-- fenetre principale -->
+<div class="main-container">
+  <ul class="columns">
+
+<% @semaine.each do |jour| %>
+  <li class="column to-do-column">
+      <div class="column-header">
+        <h4>To Do J<%=jour%></h4>
+      </div>
+        <ul class="task-list" id="day-<%=jour%>">
+        <li>item</li>
+          </ul>
+    </li>
+<% end %>
+
+    <li class="column to-do-column">
+      <div class="column-header">
+        <h4>To Do</h4>
+      </div>
+      <ul class="task-list" id="to-do">
+        <li class="task">
+          <p>Analysis</p>
+        </li>
+        <li class="task">
+          <p>Coding</p>
+        </li>
+        <li class="task">
+          <p>Card Sorting</p>
+        </li>
+        <li class="task">
+          <p>Measure</p>
+        </li>
+      </ul>
+    </li>
+
+    <li class="column doing-column">
+      <div class="column-header">
+        <h4>Doing</h4>
+      </div>
+      <ul class="task-list" id="doing">
+        <li class="task">
+          <p>Hypothesis</p>
+        </li>
+        <li class="task">
+          <p>User Testing</p>
+        </li>
+        <li class="task">
+          <p>Prototype</p>
+        </li>
+      </ul>
+    </li>
+
+    <li class="column done-column">
+      <div class="column-header">
+        <h4>Done</h4>
+      </div>
+      <ul class="task-list" id="done">
+        <li class="task">
+          <p>Ideation</p>
+        </li>
+        <li class="task">
+          <p>Sketches</p>
+        </li>
+      </ul>
+    </li>
+
+    <li class="column trash-column">
+      <div class="column-header">
+        <h4>Trash</h4>
+      </div>
+      <ul class="task-list" id="trash">
+        <li class="task">
+          <p>Interviews</p>
+        </li>
+        <li class="task">
+          <p>Research</p>
+        </li>
+
+      </ul>
+      <div class="column-button">
+        <button class="button delete-button" onclick="emptyTrash()">Delete</button>
+      </div>
+    </li>
+
+  </ul>
+</div>
+
+<script type="text/javascript">
+
+var drake=dragula([
+
+  <% @semaine.each do |jour| %>
+     document.getElementById("day-<%=jour%>"),
+  <% end %>
+  document.getElementById("to-do"),
+  document.getElementById("doing"),
+  document.getElementById("done"),
+  document.getElementById("trash")
+]);
+drake.on('drop', function(el,target,source,sibling) {
+  document.getElementsByTagName('body')[0].style.backgroundColor = '#28a0ef';
+
+   console.log("target parent "+target.parentElement.innerHTML);
+   var p=target.parentElement.getElementsByTagName('ul')[0];
+   console.log("id ="+p.id)
+  // frere soeur console.log("sibling "+sibling)
+  callServerTest();
+ 
+});
+
+function callServerTest(){
+
+   function ajaxCall() {
+            $.ajax({
+                url:     '/boards/appel_aja',
+                type: "GET",
+                success: function (data) {
+                    var x = JSON.stringify(data);
+                    console.log(x);
+                },
+  
+                error: function (error) {
+                    console.log(`Error ${error}`);
+                }
+            });
+        }
+        ajaxCall();
+
+}
+/* Vanilla JS to add a new task */
+function addTask() {
+  /* Get task text from input */
+  var inputTask = document.getElementById("taskText").value;
+  /* Add task to the 'To Do' column */
+  document.getElementById("to-do").innerHTML +=
+    "<li class='task'><p>" + inputTask + "</p></li>";
+  /* Clear task text from input after adding task */
+  document.getElementById("taskText").value = "";
+}
+
+/* Vanilla JS to delete tasks in 'Trash' column */
+function emptyTrash() {
+  /* Clear tasks from 'Trash' column */
+  document.getElementById("trash").innerHTML = "";
+}
+
+
+</script>
 <%= render @board %>
 
 <div>
