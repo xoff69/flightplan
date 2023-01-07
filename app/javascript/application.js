@@ -7,4 +7,4 @@ import "controllers"
 //= require popper
 //= require turbolinks
 //= require bootstrap
-//= require_tree
+//= require_treeimport * as bootstrap from "bootstrap"
