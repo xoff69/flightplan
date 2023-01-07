@@ -8,8 +8,10 @@ Courant <%= current_user.email%><br/>
 <br/>
 
 creation ticket:
+<%= turbo_frame_tag "ticket" do %>
 <%= link_to "creation ticket", new_ticket_path, data: { turbo: true, turbo_frame: 'modal' } %>
 
+<% end %>
  <!-- fenetre principale -->
 <div class="main-container">
   <ul class="columns">

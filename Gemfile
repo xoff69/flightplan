@@ -29,6 +29,7 @@ gem "jbuilder"
 #gestin des users
 
 gem 'devise'
+gem "tailwindcss-rails"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
