@@ -12,21 +12,32 @@ class TicketsController < ApplicationController
 
   # GET /tickets/new
   def new
+    logger.debug  params[:board_id]
+    @board=Board.find(params[:board_id])
     @ticket = Ticket.new
   end
 
   # GET /tickets/1/edit
   def edit
+    @board=Board.find(params[:board_id])
   end
 
   # POST /tickets or /tickets.json
   def create
     @ticket = Ticket.new(ticket_params)
-
+    logger.info "iciiiiiiiiiii"
+    logger.debug @ticket 
+    x= params[:ticket][:fboard_id]
+    logger.debug x.to_i
+    @board=Board.find(x.to_i)
+    logger.debug @board
+    @ticket.board_id=x.to_i
     respond_to do |format|
       if @ticket.save
-        format.html { redirect_to ticket_url(@ticket), notice: "Ticket was successfully created." }
-        format.json { render :show, status: :created, location: @ticket }
+        #format.html { redirect_to ticket_url(@ticket), notice: "Ticket was successfully created." }
+        # format.json { render :show, status: :created, location: @ticket }
+        format.html { redirect_to  @board, notice: "Ticket was successfully created." }
+        
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @ticket.errors, status: :unprocessable_entity }

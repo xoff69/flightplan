@@ -1,4 +1,6 @@
 <%= form_with(model: ticket) do |form| %>
+
+<%= form.hidden_field :fboard_id, value: @board.id %>
   <% if ticket.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>

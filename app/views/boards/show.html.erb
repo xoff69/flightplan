@@ -9,7 +9,7 @@ Courant <%= current_user.email%><br/>
 
 creation ticket:
 <%= turbo_frame_tag "ticket" do %>
-<%= link_to "creation ticket", new_ticket_path, data: { turbo: true, turbo_frame: 'modal' } %>
+<%= link_to "creation ticket", new_ticket_path(:board_id => @board.id), data: { turbo: true, turbo_frame: 'modal' } %>
 
 <% end %>
  <!-- fenetre principale -->

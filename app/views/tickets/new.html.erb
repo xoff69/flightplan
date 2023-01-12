@@ -2,11 +2,11 @@
 
 <h1>New ticket</h1>
 
-<%= render "form", ticket: @ticket %>
+<%= render "form", ticket: @ticket , board: @board %>
 
 <br>
-
+BOARD <%= @board.name%> - 
 <div>
-  <%= link_to "Back to tickets", tickets_path %>
+  <%= link_to "cancel", @board %>
 </div>
 <% end %>
