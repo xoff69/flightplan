@@ -17,22 +17,12 @@ creation ticket:
   <ul class="columns">
 
 <% @semaine.each do |jour| %>
-  <li class="column to-do-column">
+  <li class="column to-<%=jour%>-column">
       <div class="column-header">
         <h4>To Do J<%=jour%></h4>
       </div>
         <ul class="task-list" id="day-<%=jour%>">
-        <li>item</li>
-          </ul>
-    </li>
-<% end %>
-
-    <li class="column to-do-column">
-      <div class="column-header">
-        <h4>To Do</h4>
-      </div>
-      <ul class="task-list" id="to-do">
-        <li class="task">
+       <li class="task">
           <p>Analysis</p>
         </li>
         <li class="task">
@@ -44,31 +34,18 @@ creation ticket:
         <li class="task">
           <p>Measure</p>
         </li>
-      </ul>
+          </ul>
     </li>
+<% end %>
 
-    <li class="column doing-column">
-      <div class="column-header">
-        <h4>Doing</h4>
-      </div>
-      <ul class="task-list" id="doing">
-        <li class="task">
-          <p>Hypothesis</p>
-        </li>
-        <li class="task">
-          <p>User Testing</p>
-        </li>
-        <li class="task">
-          <p>Prototype</p>
-        </li>
-      </ul>
-    </li>
+  
+    
 
-    <li class="column done-column">
+    <li class="column backlog-column">
       <div class="column-header">
-        <h4>Done</h4>
+        <h4>backlog</h4>
       </div>
-      <ul class="task-list" id="done">
+      <ul class="task-list" id="backlog">
         <li class="task">
           <p>Ideation</p>
         </li>
