@@ -37,12 +37,18 @@
     <%= form.label :datearchived, style: "display: block" %>
     <%= form.datetime_field :datearchived %>
   </div>
-
-  <div>
+ <div>
     <%= form.label :duedate, style: "display: block" %>
     <%= form.datetime_field :duedate %>
   </div>
-
+  <div>
+    <%= form.label :planified_for, style: "display: block" %>
+    <%= form.datetime_field :planified_for %>
+  </div>
+ <div>
+    <%= form.label :is_timed_ticket, style: "display: block" %>
+    <%= form.check_box  :is_timed_ticket %>
+  </div>
   <div>
     <%= form.submit %>
   </div>
