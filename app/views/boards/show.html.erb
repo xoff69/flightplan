@@ -19,7 +19,7 @@ creation ticket:
 <% @semaine.each do |jour| %>
   <li class="column to-<%=jour.first%>-column">
       <div class="column-header">
-        <h4>To Do J<%=jour.second%></h4>
+        <h4>To Do J<%=jour.last%></h4>
       </div>
         <ul class="task-list" id="day-<%=jour.first%>">
        <li class="task">
@@ -31,9 +31,17 @@ creation ticket:
         <li class="task">
           <p>Card Sorting</p>
         </li>
+         
+
+        <% tj = jour[1] %>
+        <% tj.each do |t| %>
         <li class="task">
-          <p>Measure</p>
-        </li>
+        <p>
+          <%= t.label %>
+        </p>
+          </li>   
+        <% end %>
+  
           </ul>
     </li>
 <% end %>

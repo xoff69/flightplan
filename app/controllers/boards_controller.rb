@@ -75,15 +75,23 @@ end
       @board = Board.find(params[:id])
     end
 
+    def data_day(day)
+      l0=Ticket.where(board_id: @board.id, planified_for: ((Date.today+day.days) - 1.days)..Date.today+day.days)
+      s=Set.new
+      l0.each { |x| s<< x }
+      Tuple.new(day,s, Date.today+day)
+    end
+
     def set_week
-      
-      p0=Pair.new(0, Date.today)
-      p1=Pair.new(1, Date.today+1)
-      p2=Pair.new(2, Date.today+2)
-      p3=Pair.new(3, Date.today+3)
-      p4=Pair.new(4, Date.today+4)
-      p5=Pair.new(5, Date.today+5)
-      p6=Pair.new(6, Date.today+6)
+      @board = Board.find(params[:id])
+    
+      p0=data_day(0)
+      p1=data_day(1)
+      p2=data_day(2)
+      p3=data_day(3)
+      p4=data_day(4)
+      p5=data_day(5)
+      p6=data_day(6)
       
       @semaine=[p0,p1,p2,p3,p4,p5,p6]
       
