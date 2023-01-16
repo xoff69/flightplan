@@ -76,8 +76,17 @@ end
     end
 
     def set_week
-      @semaine=[0,1,2,3,4,5,6]
-    
+      
+      p0=Pair.new(0, Date.today)
+      p1=Pair.new(1, Date.today+1)
+      p2=Pair.new(2, Date.today+2)
+      p3=Pair.new(3, Date.today+3)
+      p4=Pair.new(4, Date.today+4)
+      p5=Pair.new(5, Date.today+5)
+      p6=Pair.new(6, Date.today+6)
+      
+      @semaine=[p0,p1,p2,p3,p4,p5,p6]
+      
     end
 
     # Only allow a list of trusted parameters through.

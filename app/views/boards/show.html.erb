@@ -17,11 +17,11 @@ creation ticket:
   <ul class="columns">
 
 <% @semaine.each do |jour| %>
-  <li class="column to-<%=jour%>-column">
+  <li class="column to-<%=jour.first%>-column">
       <div class="column-header">
-        <h4>To Do J<%=jour%></h4>
+        <h4>To Do J<%=jour.second%></h4>
       </div>
-        <ul class="task-list" id="day-<%=jour%>">
+        <ul class="task-list" id="day-<%=jour.first%>">
        <li class="task">
           <p>Analysis</p>
         </li>
@@ -46,6 +46,18 @@ creation ticket:
         <h4>backlog</h4>
       </div>
       <ul class="task-list" id="backlog">
+        <li class="task">
+          <p>Ideation</p>
+        </li>
+        <li class="task">
+          <p>Sketches</p>
+        </li>
+      </ul>
+
+      <div class="column-header">
+        <h4>backlog2</h4>
+      </div>
+      <ul class="task-list" id="backlog2">
         <li class="task">
           <p>Ideation</p>
         </li>
@@ -81,11 +93,10 @@ creation ticket:
 var drake=dragula([
 
   <% @semaine.each do |jour| %>
-     document.getElementById("day-<%=jour%>"),
+     document.getElementById("day-<%=jour.first%>"),
   <% end %>
-  document.getElementById("to-do"),
-  document.getElementById("doing"),
-  document.getElementById("done"),
+  document.getElementById("backlog"),
+  document.getElementById("backlog2"),
   document.getElementById("trash")
 ]);
 drake.on('drop', function(el,target,source,sibling) {
