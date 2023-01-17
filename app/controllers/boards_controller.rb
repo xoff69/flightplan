@@ -11,7 +11,6 @@ class BoardsController < ApplicationController
 
   # GET /boards/1 or /boards/1.json
   def show
-    
   end
 
   # GET /boards/new
@@ -82,7 +81,15 @@ end
       Tuple.new(day,s, Date.today+day)
     end
 
+    def data_bl
+      l0=Ticket.where(board_id: @board.id, planified_for: nil)
+
+    end
+
     def set_week
+
+      backlog=data_bl()
+      
       @board = Board.find(params[:id])
     
       p0=data_day(0)
@@ -93,8 +100,10 @@ end
       p5=data_day(5)
       p6=data_day(6)
       
-      @semaine=[p0,p1,p2,p3,p4,p5,p6]
+      semaine=[p0,p1,p2,p3,p4,p5,p6]
       
+
+      @reponse_board=[semaine,backlog]
     end
 
     # Only allow a list of trusted parameters through.

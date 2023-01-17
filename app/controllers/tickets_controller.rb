@@ -25,12 +25,8 @@ class TicketsController < ApplicationController
   # POST /tickets or /tickets.json
   def create
     @ticket = Ticket.new(ticket_params)
-    logger.info "iciiiiiiiiiii"
-    logger.debug @ticket 
     x= params[:ticket][:fboard_id]
-    logger.debug x.to_i
     @board=Board.find(x.to_i)
-    logger.debug @board
     @ticket.board_id=x.to_i
     respond_to do |format|
       if @ticket.save

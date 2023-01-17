@@ -16,21 +16,13 @@ creation ticket:
 <div class="main-container">
   <ul class="columns">
 
-<% @semaine.each do |jour| %>
+<% @reponse_board[0].each do |jour| %>
   <li class="column to-<%=jour.first%>-column">
       <div class="column-header">
         <h4>To Do J<%=jour.last%></h4>
       </div>
         <ul class="task-list" id="day-<%=jour.first%>">
-       <li class="task">
-          <p>Analysis</p>
-        </li>
-        <li class="task">
-          <p>Coding</p>
-        </li>
-        <li class="task">
-          <p>Card Sorting</p>
-        </li>
+     
          
 
         <% tj = jour[1] %>
@@ -43,7 +35,21 @@ creation ticket:
         <% end %>
   
           </ul>
+
+           <div class="column-header">
+        <h4>dessous</h4>
+      </div>
+      <ul class="task-list" id="dessous-<%=jour.first%>">
+        <li class="task">
+          <p>Ideation</p>
+        </li>
+        <li class="task">
+          <p>Sketches</p>
+        </li>
+      </ul>
     </li>
+    
+
 <% end %>
 
   
@@ -54,25 +60,17 @@ creation ticket:
         <h4>backlog</h4>
       </div>
       <ul class="task-list" id="backlog">
+      <% @reponse_board[1].each do |t| %>
+
         <li class="task">
-          <p>Ideation</p>
+          <p><%= t.label %></p>
         </li>
-        <li class="task">
-          <p>Sketches</p>
-        </li>
+
+        <% end %>
+     
       </ul>
 
-      <div class="column-header">
-        <h4>backlog2</h4>
-      </div>
-      <ul class="task-list" id="backlog2">
-        <li class="task">
-          <p>Ideation</p>
-        </li>
-        <li class="task">
-          <p>Sketches</p>
-        </li>
-      </ul>
+     
     </li>
 
     <li class="column trash-column">
@@ -100,11 +98,11 @@ creation ticket:
 
 var drake=dragula([
 
-  <% @semaine.each do |jour| %>
+  <% @reponse_board[0].each do |jour| %>
      document.getElementById("day-<%=jour.first%>"),
+     document.getElementById("dessous-<%=jour.first%>"),
   <% end %>
   document.getElementById("backlog"),
-  document.getElementById("backlog2"),
   document.getElementById("trash")
 ]);
 drake.on('drop', function(el,target,source,sibling) {
